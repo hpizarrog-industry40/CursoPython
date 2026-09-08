@@ -1,0 +1,21 @@
+id,nombre,edad,curso,ciudad,nota_parcial1,nota_parcial2,nota_final,asistencia
+1,Ana Torres,20,Matematicas,Madrid,7.5,8.0,7.8,95
+2,Luis Gomez,22,Matematicas,Barcelona,6.0,,6.5,80
+3,Maria Diaz,21,Fisica,Madrid,9.0,8.5,9.2,98
+4,Carlos Ruiz,23,Matematicas,Valencia,5.5,6.0,5.8,70
+5,Sofia Perez,20,Fisica,,8.0,7.5,7.9,88
+6,Pedro Sanchez,24,Quimica,Sevilla,4.5,5.0,4.8,60
+7,Laura Martin,19,Matematicas,Madrid,10.0,9.5,9.8,100
+8,Jorge Lopez,22,Quimica,Barcelona,6.5,,6.0,75
+9,Elena Garcia,21,Fisica,Valencia,7.0,7.0,7.0,90
+10,Diego Fernandez,23,Quimica,Madrid,3.0,4.0,3.5,55
+11,Paula Romero,20,Matematicas,Sevilla,8.5,9.0,8.8,92
+12,Miguel Alonso,22,Fisica,Barcelona,,6.5,6.2,78
+13,Lucia Navarro,21,Quimica,Valencia,7.5,7.0,7.3,85
+14,Adrian Molina,24,Matematicas,Madrid,9.5,9.0,9.4,97
+15,Carmen Ortega,19,Fisica,Sevilla,5.0,5.5,5.2,68
+16,Raul Delgado,23,Quimica,Barcelona,6.0,6.5,6.3,82
+17,Ines Castro,20,Matematicas,Valencia,8.0,,7.8,89
+18,Hugo Vega,22,Fisica,Madrid,4.0,4.5,4.2,58
+19,Alba Serrano,21,Quimica,Sevilla,9.0,8.5,8.9,94
+20,Marcos Iglesias,24,Matematicas,Barcelona,7.0,7.5,7.2,86
