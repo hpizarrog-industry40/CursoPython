@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ## Estructura del proyecto
 
 ```
-primer_proyecto/
+Aprendiendo_Pandas/
 |-- datos/
 |   `-- alumnos.csv          Dataset de ejemplo (20 alumnos, notas y asistencia)
 |-- ejemplos/
@@ -58,7 +58,7 @@ poder ensenar como tratarlos (ver `ejemplos/06_valores_faltantes.py`).
    de cada archivo:
 
    ```
-   cd primer_proyecto
+   cd Aprendiendo_Pandas
    python ejemplos/01_lectura_csv.py
    python ejemplos/02_exploracion_datos.py
    ...
