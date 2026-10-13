@@ -113,9 +113,40 @@ datos del curso.
 
 ---
 
+## Unidad 6 — Uso estadístico: regresión lineal
+
+**Ideas clave**
+- Siempre graficar y calcular `r` antes de modelar: `r` solo detecta relaciones **lineales**.
+- La pendiente se interpreta con unidades: “cada hora adicional de estudio se asocia con +0,40 puntos”.
+- R² es la proporción de la variación explicada; para comparar modelos con distinto número de variables, usar **R² ajustado**.
+- En la regresión múltiple cada coeficiente se lee “manteniendo constante el resto”.
+- `statsmodels` sirve para **explicar** (p-valores, intervalos); `scikit-learn`, para **predecir y evaluar** con datos de prueba.
+
+**Errores frecuentes**
+- Decir que una variable “causa” la nota: los datos son observacionales; se dice “se asocia con”.
+- Interpretar literalmente el intercepto (nota con 0 horas de estudio): es una extrapolación.
+- Comparar modelos con R² simple (siempre sube al agregar variables).
+- Olvidar `C()` en variables categóricas, o no saber cuál es la categoría de referencia (la primera en orden alfabético: Física; trabaja = No).
+- Evaluar el modelo con los mismos datos con los que se entrenó.
+
+**Preguntas de verificación**
+| Pregunta | Respuesta esperada |
+|---|---|
+| ¿Qué variable se correlaciona más con la nota final? | `horas_estudio` (r = 0,80); asistencia 0,61; sueño −0,07 |
+| ¿Cuál es la recta de la regresión simple con horas de estudio? | nota = 2,72 + 0,40 · horas, R² = 0,64 |
+| ¿Qué nota predice para 7 horas de estudio? | 5,50 |
+| ¿Por qué el coeficiente de horas de estudio baja de 0,40 a 0,31 en el modelo múltiple? | Parte del efecto se debía a asistir más y a no trabajar (variables relacionadas con estudiar) |
+| ¿Qué variable no aporta al modelo múltiple? | `horas_sueno` (p = 0,65) |
+| ¿Cuánto se equivoca en promedio el modelo con datos de prueba? | MAE = 0,70 puntos (predecir el promedio: 1,36) |
+| Ejercicios guiados: recta con asistencia y predicción para 90 % | nota = −2,23 + 0,096 · asistencia, R² = 0,37; 6,39 |
+
+---
+
 ## Sugerencias para trabajar en Colab
 
 - Pedir a los estudiantes **Archivo → Guardar una copia en Drive** antes de editar.
 - Si un notebook “se rompe”, usar **Entorno de ejecución → Reiniciar y ejecutar todo**.
 - Las soluciones están en una sección propia al final de cada notebook: se puede
   colapsar el título para que no se vean hasta la revisión.
+- En la Parte 3, pedir que la interpretación de cada coeficiente se escriba en una
+  celda de texto, con unidades y la frase “se asocia con”.
