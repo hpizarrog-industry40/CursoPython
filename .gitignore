@@ -4,3 +4,4 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 Aprendiendo_Pandas/datos/alumnos_ordenados.csv
+Aprendiendo_Pandas/datos/alumnos_limpio.csv
