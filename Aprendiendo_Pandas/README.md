@@ -73,11 +73,13 @@ Aprendiendo_Pandas/
 |   |-- soluciones_parte3.py        Parte 3: soluciones (uso del profesor)
 |   |-- ejercicios_parte4.py        Parte 4: ejercicios guiados con comprobación
 |   `-- soluciones_parte4.py        Parte 4: soluciones (uso del profesor)
-`-- notebooks/
-    |-- Parte1_Pandas_Colab.ipynb   Unidades 1-3 + ejercicios y soluciones
-    |-- Parte2_Pandas_Colab.ipynb   Unidades 4-5 + ejercicios y soluciones
-    |-- Parte3_Regresion_Colab.ipynb Unidad 6 + ejercicios guiados y soluciones
-    `-- Parte4_Arboles_Forecasting_Colab.ipynb  Unidad 7 + ejercicios guiados y soluciones
+|-- notebooks/
+|   |-- Parte1_Pandas_Colab.ipynb   Unidades 1-3 + ejercicios y soluciones
+|   |-- Parte2_Pandas_Colab.ipynb   Unidades 4-5 + ejercicios y soluciones
+|   |-- Parte3_Regresion_Colab.ipynb Unidad 6 + ejercicios guiados y soluciones
+|   `-- Parte4_Arboles_Forecasting_Colab.ipynb  Unidad 7 + ejercicios guiados y soluciones
+`-- presentaciones/
+    `-- Pandas_en_Google_Colab_Parte4.pptx      Presentación de la Parte 4 (unidad 7)
 ```
 
 ## Los datos
