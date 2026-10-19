@@ -79,6 +79,9 @@ Aprendiendo_Pandas/
 |   |-- Parte3_Regresion_Colab.ipynb Unidad 6 + ejercicios guiados y soluciones
 |   `-- Parte4_Arboles_Forecasting_Colab.ipynb  Unidad 7 + ejercicios guiados y soluciones
 `-- presentaciones/
+    |-- Pandas_en_Google_Colab_Parte1.pptx      Presentación de la Parte 1 (unidades 1-3)
+    |-- Pandas_en_Google_Colab_Parte2.pptx      Presentación de la Parte 2 (unidades 4-5)
+    |-- Pandas_en_Google_Colab_Parte3.pptx      Presentación de la Parte 3 (unidad 6)
     `-- Pandas_en_Google_Colab_Parte4.pptx      Presentación de la Parte 4 (unidad 7)
 ```
 
