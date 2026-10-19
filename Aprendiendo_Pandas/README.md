@@ -13,6 +13,8 @@ Python, partiendo de archivos CSV reales. El curso se trabaja en **Google Colab*
 |---|---|---|
 | Parte 1: exploración, filtrado y faltantes | 1, 2 y 3 | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hpizarrog-industry40/CursoPython/blob/main/Aprendiendo_Pandas/notebooks/Parte1_Pandas_Colab.ipynb) |
 | Parte 2: combinación de tablas y limpieza | 4 y 5 | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hpizarrog-industry40/CursoPython/blob/main/Aprendiendo_Pandas/notebooks/Parte2_Pandas_Colab.ipynb) |
+| Parte 3: regresión lineal simple y múltiple | 6 | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hpizarrog-industry40/CursoPython/blob/main/Aprendiendo_Pandas/notebooks/Parte3_Regresion_Colab.ipynb) |
+| Parte 4: árboles, Random Forest, XGBoost y forecasting | 7 | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hpizarrog-industry40/CursoPython/blob/main/Aprendiendo_Pandas/notebooks/Parte4_Arboles_Forecasting_Colab.ipynb) |
 
 Los notebooks leen los datos directamente desde este repositorio, así que no hace
 falta subir ningún archivo. Para guardar cambios: **Archivo → Guardar una copia en Drive**.
@@ -21,6 +23,8 @@ falta subir ningún archivo. Para guardar cambios: **Archivo → Guardar una cop
 
 - Python 3.8 o superior
 - pandas
+- matplotlib, statsmodels y scikit-learn (unidades 6 y 7)
+- xgboost (unidad 7)
 
 ```
 pip install -r requirements.txt
@@ -37,7 +41,9 @@ Aprendiendo_Pandas/
 |   |-- cursos.csv                  Tabla auxiliar: profesor, sala y créditos por curso
 |   |-- asistencia_mensual.csv      Asistencia por alumno y mes (otra granularidad)
 |   |-- alumnos_2026_2.csv          Segundo período (para concatenar)
-|   `-- alumnos_sucio.csv           Versión "sucia" de alumnos para practicar limpieza
+|   |-- alumnos_sucio.csv           Versión "sucia" de alumnos para practicar limpieza
+|   |-- rendimiento.csv             150 estudiantes para regresión lineal
+|   `-- seguimiento_semanal.csv     150 estudiantes x 16 semanas (árboles y forecasting)
 |-- ejemplos/
 |   |-- 01_lectura_csv.py           Leer un CSV y primera inspección
 |   |-- 02_exploracion_datos.py     info(), describe(), value_counts()
@@ -49,15 +55,29 @@ Aprendiendo_Pandas/
 |   |-- 08_merge_tablas.py          merge(), tipos de join, indicator, validate
 |   |-- 09_granularidad_concat.py   Granularidad antes de unir; concat() de períodos
 |   |-- 10_limpieza_datos.py        Limpieza paso a paso de un archivo real
-|   `-- 11_funcion_limpieza.py      Funciones reutilizables, pipe() y registro
+|   |-- 11_funcion_limpieza.py      Funciones reutilizables, pipe() y registro
+|   |-- 12_correlacion.py           corr() y diagramas de dispersión
+|   |-- 13_regresion_simple.py      Recta, R², p-valor, predicción y residuos
+|   |-- 14_regresion_multiple.py    Varias variables, C(), R² ajustado y VIF
+|   |-- 15_prediccion_evaluacion.py train/test, MAE y RMSE con scikit-learn
+|   |-- 16_arbol_decision.py        Clasificación, reglas, matriz de confusión, sobreajuste
+|   |-- 17_random_forest.py         Bosque vs. árbol, importancia por permutación
+|   |-- 18_xgboost_alerta_temprana.py  Alerta temprana en la semana 6 con XGBoost
+|   `-- 19_forecasting_semanal.py   Rezagos, división temporal y pronóstico semanal
 |-- ejercicios/
 |   |-- ejercicios_propuestos.py    Parte 1: ejercicios para los alumnos
 |   |-- soluciones.py               Parte 1: soluciones (uso del profesor)
 |   |-- ejercicios_parte2.py        Parte 2: ejercicios con comprobación automática
-|   `-- soluciones_parte2.py        Parte 2: soluciones (uso del profesor)
+|   |-- soluciones_parte2.py        Parte 2: soluciones (uso del profesor)
+|   |-- ejercicios_parte3.py        Parte 3: ejercicios guiados con comprobación
+|   |-- soluciones_parte3.py        Parte 3: soluciones (uso del profesor)
+|   |-- ejercicios_parte4.py        Parte 4: ejercicios guiados con comprobación
+|   `-- soluciones_parte4.py        Parte 4: soluciones (uso del profesor)
 `-- notebooks/
     |-- Parte1_Pandas_Colab.ipynb   Unidades 1-3 + ejercicios y soluciones
-    `-- Parte2_Pandas_Colab.ipynb   Unidades 4-5 + ejercicios y soluciones
+    |-- Parte2_Pandas_Colab.ipynb   Unidades 4-5 + ejercicios y soluciones
+    |-- Parte3_Regresion_Colab.ipynb Unidad 6 + ejercicios guiados y soluciones
+    `-- Parte4_Arboles_Forecasting_Colab.ipynb  Unidad 7 + ejercicios guiados y soluciones
 ```
 
 ## Los datos
@@ -79,11 +99,13 @@ Aprendiendo_Pandas/
 Tiene valores faltantes intencionados en `ciudad`, `nota_parcial1` y
 `nota_parcial2` para enseñar cómo tratarlos (ver `ejemplos/06_valores_faltantes.py`).
 
-### Tablas para las unidades 4 y 5
+### Tablas para las unidades 4 a 7
 
 - `cursos.csv`: una fila por curso (clave `curso`). Incluye *Biologia*, que no tiene alumnos, para mostrar `right_only` en un merge.
 - `asistencia_mensual.csv`: tres filas por alumno (marzo, abril y mayo). Al unirla sin agregar, la base se triplica.
 - `alumnos_2026_2.csv`: mismo formato que `alumnos.csv`. Salen los alumnos 10 y 18 y entran el 21 y el 22.
+- `rendimiento.csv` (unidad 6): 150 estudiantes con horas de estudio, asistencia, horas de sueño (4 faltantes), si trabaja, curso y nota final. Datos simulados con relaciones conocidas para practicar regresión.
+- `seguimiento_semanal.csv` (unidad 7): los mismos 150 estudiantes de `rendimiento.csv`, semana a semana durante 16 semanas (horas de estudio, asistencia, entrega de tarea y nota del control semanal), con certámenes en las semanas 8 y 16. Datos simulados con tendencias, estacionalidad e interacciones para practicar árboles y forecasting.
 - `alumnos_sucio.csv`: los mismos 20 alumnos con 2 filas duplicadas, 15 formas de escribir los cursos, comas decimales, `N/A`, `-` y `%`. Tras limpiarlo con `11_funcion_limpieza.py` vuelve a coincidir con `alumnos.csv`.
 
 ## Cómo usar el proyecto en clase
@@ -95,13 +117,13 @@ las celdas en orden con **Shift + Enter**.
 
 ### En local
 
-1. Ejecute los ejemplos en orden (del 01 al 11) desde la carpeta `Aprendiendo_Pandas`:
+1. Ejecute los ejemplos en orden (del 01 al 19) desde la carpeta `Aprendiendo_Pandas`:
 
    ```
    cd Aprendiendo_Pandas
    python ejemplos/01_lectura_csv.py
    ...
-   python ejemplos/11_funcion_limpieza.py
+   python ejemplos/19_forecasting_semanal.py
    ```
 
 2. Los alumnos completan los ejercicios (los `TODO`):
@@ -110,9 +132,11 @@ las celdas en orden con **Shift + Enter**.
    cd ejercicios
    python ejercicios_propuestos.py
    python ejercicios_parte2.py
+   python ejercicios_parte3.py
+   python ejercicios_parte4.py
    ```
 
-3. El profesor compara con `soluciones.py` y `soluciones_parte2.py`.
+3. El profesor compara con `soluciones.py`, `soluciones_parte2.py`, `soluciones_parte3.py` y `soluciones_parte4.py`.
 
 ## Progresión sugerida
 
@@ -132,3 +156,17 @@ las celdas en orden con **Shift + Enter**.
 11. Limpiar un archivo real paso a paso (`10`)
 12. Automatizar la limpieza con funciones (`11`)
 13. Ejercicios de la parte 2
+
+**Parte 3**
+14. Correlación y diagramas de dispersión (`12`)
+15. Regresión lineal simple: recta, R² y residuos (`13`)
+16. Regresión lineal múltiple y variables categóricas (`14`)
+17. Predecir y evaluar con datos de prueba (`15`)
+18. Ejercicios guiados de la parte 3
+
+**Parte 4**
+19. Árbol de decisión: clasificar, leer reglas y detectar sobreajuste (`16`)
+20. Random Forest e importancia de variables (`17`)
+21. XGBoost: alerta temprana en la semana 6 (`18`)
+22. Forecasting semanal con rezagos y división temporal (`19`)
+23. Ejercicios guiados de la parte 4
